@@ -1,0 +1,159 @@
+:root {
+  --cor-fundo: #dc1b55;
+  --cor-texto: #2e2e2e;
+  --cor-cartas: #644fce;
+  --cor-cartas-costas: #ffc107;
+  --cor-cartas-borda: #e0e0e0;
+  --cor-botao: #ff5722;
+  --cor-botao-hover: #e64a19;
+  --cor-gradient: linear-gradient(90deg, #ff7043, #ffa726);
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  text-align: center;
+  padding: 20px;
+  width: 100%;
+  max-width: 1200px;
+  box-sizing: border-box;
+}
+
+h1 {
+  margin: 0 0 20px;
+ color: salmon;
+  font-size: 2.5rem;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+#pontuacao, #vidas {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.tabuleiro {
+  display: grid;
+  grid-template-columns: repeat(4, 100px);
+  gap: 15px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.card {
+  width: 100px;
+  height: 150px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease-in-out;
+}
+
+.card.virada .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-frente, .card-costas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  border: 2px solid var(--cor-cartas-borda);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.card-costas {
+  background-color: var(--cor-cartas-costas);
+  color: white;
+}
+
+.card-frente {
+  background-color: var(--cor-cartas);
+  color: #333333;
+  transform: rotateY(180deg);
+}
+
+.card-frente img, .card-costas img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+#botao-iniciar {
+  background-color: var(--cor-botao);
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-top: 20px;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+#botao-iniciar:hover {
+  background-color: var(--cor-botao-hover);
+}
+
+@media (max-width: 768px) {
+  .tabuleiro {
+    grid-template-columns: repeat(3, 100px);
+    gap: 10px;
+  }
+
+  #botao-iniciar {
+    padding: 10px 30px;
+    font-size: 1rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tabuleiro {
+    grid-template-columns: repeat(2, 90px);
+  }
+
+  .card {
+    width: 90px;
+    height: 130px;
+  }
+
+  #botao-iniciar {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+}
